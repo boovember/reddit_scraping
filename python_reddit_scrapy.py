@@ -8,11 +8,11 @@ import pandas as pd
 
 # Acessing the reddit api
 
-reddit = praw.Reddit(client_id="8gxHtQPY7gsjMA",#my client id
-                     client_secret="j6UHGlRmQ3Ze44uHaKpTthUGakY",
-                     user_agent="my user agent",
-                     username = "memebaes",
-                     password = "S@marth2002")
+reddit = praw.Reddit(client_id="EnterYourRedditClientID",#my client id
+                     client_secret="EnterYourRedditClientSecretID",
+                     user_agent="EnterYourRedditAppName",
+                     username = "EnterYourRedditUserName",
+                     password = "EnterYourRedditPassword")
 
 
 sub = ['Askreddit']  # make a list of subreddits you want to scrape the data from
@@ -50,12 +50,12 @@ for s in sub:
         }
         for submission in subreddit.search(query,sort = "top",limit = 1):
             post_dict["title"].append(submission.title)
-            post_dict["score"].append(submission.title)
-            post_dict["id"].append(submission.title)
-            post_dict["url"].append(submission.title)
-            post_dict["comms_num"].append(submission.title)
-            post_dict["created"].append(submission.title)
-            post_dict["body"].append(submission.title)
+            post_dict["score"].append(submission.score)
+            post_dict["id"].append(submission.id)
+            post_dict["url"].append(submission.url)
+            post_dict["comms_num"].append(submission.num_comments)
+            post_dict["created"].append(submission.created_utc)
+            post_dict["body"].append(submission.selftext)
             
             ##### Acessing comments on the post
             submission.comments.replace_more(limit = 1)
